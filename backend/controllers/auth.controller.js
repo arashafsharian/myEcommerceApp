@@ -38,7 +38,7 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user || !(await user.matchPassword(password))) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
     const { accessToken, refreshToken } = await generateTokens(user._id);
